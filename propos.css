@@ -1,0 +1,371 @@
+/* ==========================================================================
+   1. TOKENS DE DESIGN LUXE & ARCHITECTURE
+   ========================================================================== */
+:root {
+    --bg-main: #FBFBFA;        /* Blanc cassé mat architectural */
+    --surface: #FFFFFF;        /* Blanc pur pour les cartes */
+    --text-main: #1A1A1A;      /* Noir encre profond */
+    --text-muted: #6E6E6A;     /* Gris pierre pour le texte secondaire */
+    --accent: #B0926A;         /* Bronze/Or sablé métallique */
+    --accent-dark: #8E714B;    /* Bronze sombre pour le contraste */
+    --border: rgba(26, 26, 26, 0.06); /* Ligne de séparation quasi-invisible */
+    
+    /* Ombres physiques stratifiées (Layered Shadows) */
+    --shadow-sm: 0 2px 4px rgba(26, 26, 26, 0.02);
+    --shadow-md: 0 12px 30px -10px rgba(26, 26, 26, 0.04), 0 4px 12px -5px rgba(26, 26, 26, 0.02);
+    --shadow-lg: 0 30px 60px -15px rgba(26, 26, 26, 0.06), 0 10px 20px -5px rgba(26, 26, 26, 0.03);
+    
+    /* Courbe d'animation fluide inspirée d'Apple */
+    --cb-fluid: cubic-bezier(0.25, 1, 0.5, 1);
+    --duration: 0.5s;
+}
+
+/* RESET ET RAFFINEMENT TYPOGRAPHIQUE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: SF Pro Display, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 0; /* Plus d'espace pour laisser respirer le design */
+}
+
+/* ==========================================================================
+   2. BOUTONS COUTURE & ANIMATIONS
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 4px; /* Arrondi minimaliste et géométrique (plus luxe que les gros arrondis) */
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Espacement de texte style haute couture */
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: var(--duration) var(--cb-fluid);
+}
+
+.btn-maps {
+    background-color: transparent;
+    color: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 30px;
+    backdrop-filter: blur(8px);
+}
+
+.btn-maps:hover {
+    background-color: var(--surface);
+    color: var(--text-main);
+    border-color: var(--surface);
+    transform: translateY(-2px);
+}
+
+.btn-reserve {
+    background-color: var(--text-main);
+    color: var(--surface);
+    box-shadow: var(--shadow-sm);
+    width: auto;
+}
+
+/* Effet de brillance qui traverse le bouton au survol */
+.btn-reserve::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: 0.6s;
+}
+
+.btn-reserve:hover::before {
+    left: 100%;
+}
+
+.btn-reserve:hover {
+    background-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ==========================================================================
+   3. HERO IMMERSIF (PREMIUM CINÉMATIQUE)
+   ========================================================================== */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('images/hero.jpg') center/cover no-repeat;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--surface);
+}
+
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 300; /* Plus fin pour un effet éditorial galerie d'art */
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.hero .location {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent); /* Met en valeur la localisation avec la couleur bronze */
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   4. SECTION HISTOIRE (STYLE ÉDITORIAL)
+   ========================================================================== */
+.about-story {
+    max-width: 800px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.about-story h2 {
+    font-size: 2.8rem;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.about-story p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   5. GRILLE DES ESPACES (ARCHITECTURE HOVER EFFECT)
+   ========================================================================== */
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 60px;
+}
+
+.rooms-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Grand espacement pour un look de catalogue de luxe */
+}
+
+.room-card {
+    background: var(--surface);
+    border-radius: 0px; /* Suppression des arrondis pour un design brut et architectural */
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: var(--duration) var(--cb-fluid);
+}
+
+.room-img-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.room-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: calc(var(--duration) * 1.5) var(--cb-fluid);
+    filter: grayscale(15%); /* Teinte légèrement désaturée très chic */
+}
+
+/* Au survol de la carte, l'image reprend ses couleurs et zoome */
+.room-card:hover .room-img {
+    transform: scale(1.04);
+    filter: grayscale(0%);
+}
+
+.room-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(176, 146, 106, 0.3); /* Bordure subtile bronze au survol */
+}
+
+.room-info {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.room-info h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.room-info p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   6. CONTACT ET PIED DE PAGE STUDIO
+   ========================================================================== */
+.footer-contact {
+    background-color: #111111; /* Fond noir absolu pour fermer la page avec puissance */
+    color: var(--surface);
+    padding: 120px 0;
+}
+
+.footer-contact h2 {
+    font-size: 3rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    font-weight: 300;
+    color: #999999;
+}
+
+.contact-info a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--duration) var(--cb-fluid);
+}
+
+.contact-info a:hover {
+    color: var(--surface);
+}
+
+/* ==========================================================================
+   7. RESPONSIVE HOIRZONTAL (ORDINATEURS DE STUDIO)
+   ========================================================================== */
+@media (min-width: 992px) {
+    .hero h1 {
+        font-size: 6.5rem;
+    }
+
+    .room-card {
+        flex-direction: row;
+        height: 480px;
+    }
+
+    /* Alternance sophistiquée */
+    .room-card:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .room-img-container {
+        width: 62%;
+        height: 100%;
+    }
+
+    .room-info {
+        width: 38%;
+        padding: 60px;
+    }
+}
+
+
+.hero-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-top:25px;
+
+}
+
+
+
+.btn-back{
+
+background:white;
+
+color:#111;
+
+border:1px solid rgba(0,0,0,.15);
+
+}
+
+
+
+.btn-back:hover{
+
+background:#111;
+
+color:white;
+
+}
+
+
+
+.btn-maps{
+
+background:#b0926a;
+
+color:white;
+
+}
+
+
+
+.btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:14px 28px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+font-weight:600;
+
+letter-spacing:.5px;
+
+transition:.3s;
+
+}
