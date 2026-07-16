@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Réserver votre séjour - Le Cocon 32</title>
+
+    <!-- Calendrier (à remplacer par votre librairie si besoin) -->
+    <link rel="stylesheet" href="client.css">
+
+</head>
+
+<body>
+
+<main class="booking-container">
+
+    <!-- Colonne Gauche : Résumé logement -->
+    <section class="property-summary">
+
+        <a href="propos.html" class="back-link">
+            ← Retour à la présentation
+        </a>
+
+        <div class="luxury-badge">
+            Suite Privée Exclusive
+        </div>
+
+        <h1>Le Cocon 32</h1>
+
+        <p class="location-sub">
+            Paris, France • 32 m² d'architecture
+        </p>
+
+
+        <div class="price-display">
+            <span id="live-price">...</span>
+            <span class="currency">€</span>
+            <span class="per-night">/ nuit</span>
+        </div>
+
+
+        <div class="included-spaces-box">
+
+            <h3>
+                Espaces inclus dans votre privatisation :
+            </h3>
+
+            <ul>
+                <li>
+                    <span>✦</span>
+                    La Chambre Master Suite
+                </li>
+
+                <li>
+                    <span>✦</span>
+                    La Douchette en béton ciré
+                </li>
+
+                <li>
+                    <span>✦</span>
+                    La Kitchenette & son pôle culinaire en quartz
+                </li>
+            </ul>
+
+
+            <p class="disclaimer">
+                Ces espaces forment un lot unique et indissociable
+                pour votre confort absolu.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Colonne Droite : Réservation -->
+    <section class="booking-engine">
+
+
+        <h2>
+            Sélectionnez vos dates
+        </h2>
+
+
+        <div class="calendar-wrapper">
+
+            <input 
+                type="text"
+                id="booking-dates"
+                placeholder="Sélectionnez vos nuits sur le calendrier..."
+                readonly
+            >
+
+        </div>
+
+
+
+        <!-- Détail prix -->
+
+        <div id="price-breakdown" class="price-breakdown hidden">
+
+            <div class="breakdown-row">
+
+                <span id="breakdown-label">
+                    X nuits
+                </span>
+
+                <span id="breakdown-amount">
+                    0 €
+                </span>
+
+            </div>
+
+
+            <div class="breakdown-total">
+
+                <span>
+                    Total estimé
+                </span>
+
+                <span id="total-amount">
+                    0 €
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Formulaire -->
+
+        <form id="booking-form">
+
+
+            <h3>
+                Détails de la réservation
+            </h3>
+
+
+
+            <div class="input-group">
+
+                <label for="guest-name">
+                    Nom complet *
+                </label>
+
+                <input
+                    type="text"
+                    id="guest-name"
+                    required
+                    placeholder="Jean Dupont"
+                >
+
+            </div>
+
+
+
+
+            <div class="input-group">
+
+                <label for="guest-phone">
+                    Numéro de téléphone *
+                </label>
+
+                <input
+                    type="tel"
+                    id="guest-phone"
+                    required
+                    placeholder="+33 6 00 00 00 00"
+                >
+
+            </div>
+
+
+
+
+            <div class="input-group">
+
+    <label for="guest-arrival">
+        Heure estimée d'arrivée *
+    </label>
+
+    <input
+        type="time"
+        id="guest-arrival"
+        required
+        min="00:00"
+        max="23:59"
+    >
+
+</div>
+
+
+
+            <div class="input-group">
+
+                <label for="guest-email">
+                    Adresse Email
+                    <span>
+                        (Facultatif)
+                    </span>
+                </label>
+
+
+                <input
+                    type="email"
+                    id="guest-email"
+                    placeholder="jean.dupont@email.com"
+                >
+
+            </div>
+
+
+<button 
+    id="btn-action"
+    class="btn-primary"
+    type="button"
+    disabled
+>
+    Choisir des dates
+</button>
+
+
+
+        </form>
+
+
+
+        <p id="status-notice" class="status-notice hidden"></p>
+
+
+    </section>
+
+
+</main>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+
+
+<div id="success-modal" class="modal hidden">
+    
+    <div class="modal-content">
+        
+        <div class="success-icon">
+            ✓
+        </div>
+        
+        <h2>
+            Merci pour votre réservation !
+        </h2>
+        
+        <p>
+            Votre demande a bien été enregistrée.<br>
+            Nous allons vous contacter rapidement afin de confirmer votre séjour.
+        </p>
+        
+        <button id="close-modal">
+            Fermer
+        </button>
+        
+    </div>
+    
+</div>
+
+<script type="module" src="client.js"></script>
+
+
+
+
+
+</body>
+
+</html>
