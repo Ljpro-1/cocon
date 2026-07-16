@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Panneau Admin - Le Cocon 32</title>
+
+
+<!-- Flatpickr Calendar -->
+
+<link 
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+<!-- CSS Admin -->
+
+<link rel="stylesheet" href="admin.css">
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- ==========================
+     AUTHENTIFICATION
+========================== -->
+
+
+<div id="auth-overlay" class="auth-overlay">
+
+
+<div class="auth-card">
+
+
+<h2>
+Accès Sécurisé Studio
+</h2>
+
+
+<p>
+Veuillez entrer le code administrateur.
+</p>
+
+
+
+<input
+type="password"
+id="admin-pass"
+placeholder="Code d'accès..."
+autocomplete="current-password">
+
+
+
+<button
+id="btn-login"
+class="btn-admin">
+
+Connexion
+
+</button>
+
+
+
+<p
+id="auth-error"
+class="error-msg hidden">
+
+Code incorrect. Accès refusé.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- ==========================
+     DASHBOARD
+========================== -->
+
+
+<div 
+id="admin-dashboard"
+class="admin-dashboard hidden">
+
+
+
+
+
+<!-- HEADER -->
+
+<header class="admin-header">
+
+
+<div>
+
+<h1>
+Le Cocon 32
+</h1>
+
+
+<p>
+Panneau de Contrôle Logistique & Tarifs
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="header-actions">
+
+
+<a 
+href="index.html"
+class="btn-secondary">
+
+Voir le site
+
+</a>
+
+
+
+<button
+id="btn-logout"
+class="btn-secondary">
+
+Déconnexion
+
+</button>
+
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+
+
+
+
+<main class="admin-grid">
+
+
+
+
+
+<!-- ==========================
+     CONTROLES
+========================== -->
+
+
+<section class="controls-panel">
+
+
+
+
+
+<!-- TARIFICATION -->
+
+
+<div class="card">
+
+
+<h3>
+Tarification
+</h3>
+
+
+
+<div class="price-control">
+
+
+<label for="nightly-price-input">
+
+Prix par nuit (€)
+
+</label>
+
+
+
+
+<div class="input-inline">
+
+
+<input
+type="number"
+id="nightly-price-input"
+min="1"
+placeholder="150">
+
+
+
+
+
+<button
+id="btn-update-price"
+class="btn-admin">
+
+Mettre à jour
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- BLOQUAGE DATES -->
+
+
+<div class="card">
+
+
+
+<h3>
+Ajout Manuel & Fermetures
+</h3>
+
+
+
+<p class="section-desc">
+
+Bloquez des dates pour maintenance,
+congés ou réservation directe.
+
+</p>
+
+
+
+
+
+
+<div class="input-group">
+
+
+<label for="manual-type">
+
+Type d'occupation
+
+</label>
+
+
+
+<select id="manual-type">
+
+
+<option value="externe">
+
+Client direct
+
+</option>
+
+
+
+<option value="ferme">
+
+Fermeture technique
+
+</option>
+
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div
+class="input-group hidden"
+id="manual-client-fields">
+
+
+<label for="manual-name">
+
+Nom complet *
+
+</label>
+
+
+
+<input
+type="text"
+id="manual-name"
+placeholder="Nom du client">
+
+
+
+
+
+
+<label for="manual-phone">
+
+Téléphone *
+
+</label>
+
+
+
+<input
+type="tel"
+id="manual-phone"
+placeholder="+33 6 00 00 00 00">
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="input-group">
+
+
+<label for="manual-dates">
+
+Période (Début et Fin)
+
+</label>
+
+
+
+<input
+type="text"
+id="manual-dates"
+placeholder="Sélectionner les dates..."
+readonly>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- LEGENDE CALENDRIER -->
+
+
+<div class="calendar-info">
+
+
+<span>
+🟢 Dates libres
+</span>
+
+
+<span>
+🔴 Réservées
+</span>
+
+
+<span>
+🟡 Bloquées
+</span>
+
+
+</div>
+
+
+
+
+
+
+
+<button
+id="btn-submit-manual"
+class="btn-admin btn-block">
+
+Bloquer ces dates
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     RESERVATIONS
+========================== -->
+
+
+<section class="bookings-panel">
+
+
+<h2>
+Flux des Réservations
+</h2>
+
+
+
+
+
+<div
+id="bookings-container"
+class="bookings-list">
+
+
+<p class="no-data">
+
+Aucune réservation enregistrée pour le moment.
+
+</p>
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ==========================
+     SCRIPTS
+========================== -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+
+
+
+<script type="module" src="admin.js"></script>
+
+
+
+
+</body>
+
+</html>
